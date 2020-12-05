@@ -23,20 +23,21 @@ function readAll(fileRoute: string): string[] {
   return data;
 }
 
-function treeCounter(data: string[][]): number {
+function treeCounter( data: string[][],
+  rowSlope?: number,
+  colSlope?: number
+): number {
   let col: number = 0;
   let row: number = 0;
   let treeCount: number = 0;
   let rowSize: number = data.length;
   let colSize: number = data[0].length;
-  while (row < rowSize - 1) {
-    col = col + 3 < colSize ? col + 3 : col + 3 - colSize;
-    row = row + 1;
-    console.log(data[row][col]);
+  while (row < rowSize - rowSlope) {
+    col = col + colSlope < colSize ? col + colSlope : col + colSlope - colSize;
+    row = row + rowSlope;
     if (data[row][col] === "#") {
       treeCount++;
-      data[row][col] = "X";
-    } else data[row][col] = "O";
+    }
   }
   return treeCount;
 }
@@ -47,5 +48,15 @@ const FILE_NAME: string = "in";
 let input: string[][] = readAll(FILE_DIR + FILE_NAME).map((row) =>
   row.split("")
 );
-input.pop();
-console.log(treeCounter(input));
+let slopes: number[][] = [
+  [1, 1],
+  [1, 3],
+  [1, 5],
+  [1, 7],
+  [2, 1],
+];
+console.log(
+  slopes
+    .map((slope) => treeCounter(input, slope[0], slope[1]))
+    .reduce((x, y) => x*y)
+);
