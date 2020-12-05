@@ -1,0 +1,23 @@
+[
+  { pos1: 2 },   { pos1: NaN }, { pos1: NaN }, { pos1: 6 },   { pos1: NaN },
+  { pos1: NaN }, { pos1: NaN }, { pos1: NaN }, { pos1: NaN }, { pos1: NaN },
+  { pos1: NaN }, { pos1: NaN }, { pos1: NaN }, { pos1: NaN }, { pos1: NaN },
+  { pos1: NaN }, { pos1: NaN }, { pos1: NaN }, { pos1: NaN }, { pos1: NaN },
+  { pos1: NaN }, { pos1: NaN }, { pos1: NaN }, { pos1: NaN }, { pos1: NaN },
+  { pos1: NaN }, { pos1: NaN }, { pos1: NaN }, { pos1: NaN }, { pos1: NaN },
+  { pos1: NaN }, { pos1: NaN }, { pos1: NaN }, { pos1: NaN }, { pos1: NaN },
+  { pos1: NaN }, { pos1: NaN }, { pos1: NaN }, { pos1: NaN }, { pos1: NaN },
+  { pos1: NaN }, { pos1: NaN }, { pos1: NaN }, { pos1: NaN }, { pos1: NaN },
+  { pos1: NaN }, { pos1: NaN }, { pos1: NaN }, { pos1: NaN }, { pos1: NaN },
+  { pos1: NaN }, { pos1: NaN }, { pos1: NaN }, { pos1: NaN }, { pos1: NaN },
+  { pos1: NaN }, { pos1: NaN }, { pos1: NaN }, { pos1: NaN }, { pos1: NaN },
+  { pos1: NaN }, { pos1: NaN }, { pos1: NaN }, { pos1: NaN }, { pos1: NaN },
+  { pos1: NaN }, { pos1: NaN }, { pos1: NaN }, { pos1: NaN }, { pos1: NaN },
+  { pos1: NaN }, { pos1: NaN }, { pos1: NaN }, { pos1: NaN }, { pos1: NaN },
+  { pos1: NaN }, { pos1: NaN }, { pos1: NaN }, { pos1: NaN }, { pos1: NaN },
+  { pos1: NaN }, { pos1: NaN }, { pos1: NaN }, { pos1: NaN }, { pos1: NaN },
+  { pos1: NaN }, { pos1: NaN }, { pos1: NaN }, { pos1: NaN }, { pos1: NaN },
+  { pos1: NaN }, { pos1: NaN }, { pos1: NaN }, { pos1: NaN }, { pos1: NaN },
+  { pos1: NaN }, { pos1: NaN }, { pos1: NaN }, { pos1: NaN }, { pos1: NaN },
+  ... 1901 more items
+]
