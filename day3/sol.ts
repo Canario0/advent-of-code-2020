@@ -33,7 +33,8 @@ function treeCounter( data: string[][],
   let rowSize: number = data.length;
   let colSize: number = data[0].length;
   while (row < rowSize - rowSlope) {
-    col = col + colSlope < colSize ? col + colSlope : col + colSlope - colSize;
+    /* col = col + colSlope < colSize ? col + colSlope : col + colSlope - colSize; */
+    col = (col + colSlope) % colSize;
     row = row + rowSlope;
     if (data[row][col] === "#") {
       treeCount++;
