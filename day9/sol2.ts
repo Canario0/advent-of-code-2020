@@ -52,4 +52,4 @@ const data: number[] = readAll(FILE_DIR + FILE_NAME).map((input) =>
 );
 const invalidNum = findInvalid(data, 25);
 const result = findContiguos(data, invalidNum).sort((a, b) => a - b);
-console.log(result[0] + result[result.length]);
+console.log(result[0] + result[result.length - 1]);
