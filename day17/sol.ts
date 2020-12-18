@@ -32,15 +32,6 @@ function* neighborsGenerator(coordinate: Coordinate) {
   }
 }
 
-function getCubeState(
-  coordinate: Coordinate,
-  cube: Map<number, string[][]>
-): string | undefined {
-  const plane = cube.get(coordinate.z) || [];
-  const row = plane[coordinate.x] || [];
-  return row[coordinate.y];
-}
-
 function printCube(
   cube: Map<string, string>,
   zLimits: number[],
