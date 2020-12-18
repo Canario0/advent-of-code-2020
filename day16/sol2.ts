@@ -44,12 +44,10 @@ const valids: string[] = tickets.filter((ticket) => {
       return cache.get(auxValue);
     }
     const result = fields.some((field) => {
-      if (
+      return (
         (field.minRange[0] <= auxValue && auxValue <= field.minRange[1]) ||
         (field.maxRange[0] <= auxValue && auxValue <= field.maxRange[1])
-      )
-        return true;
-      return false;
+      );
     }, 0);
     cache.set(auxValue, result);
     return result;
@@ -102,4 +100,3 @@ console.log(
     .filter((_, i) => departureFileds.some((field) => field.index! === i))
     .reduce((acc, value) => acc * value, 1)
 );
-/* console.log(departureFileds.reduce((acc, field) => acc * field.index!, 1)); */

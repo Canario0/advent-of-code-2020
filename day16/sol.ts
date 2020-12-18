@@ -42,12 +42,10 @@ const cache: Map<number, boolean> = new Map();
         return !cache.get(auxValue) ? acc + auxValue : acc;
       }
       const result = rules.some((rule) => {
-        if (
+        return (
           (rule.minRange[0] <= auxValue && auxValue <= rule.minRange[1]) ||
           (rule.maxRange[0] <= auxValue && auxValue <= rule.maxRange[1])
-        )
-          return true;
-        return false;
+        );
       }, 0);
       cache.set(auxValue, result);
       return !result ? acc + auxValue : acc;
@@ -55,10 +53,3 @@ const cache: Map<number, boolean> = new Map();
     return acc + summ;
   }, 0)
 );
-
-// let acc = 0;
-// cache.forEach((value, key)=>{
-//     if(!value) acc += key;
-// });
-// console.log(cache);
-// console.log(acc);
