@@ -1,4 +1,3 @@
-// NOT WORKING TODO: CHECK WHY?
 // Functions
 function fileRead(fileRoute: string): string {
   return Deno.readTextFileSync(fileRoute);
@@ -12,35 +11,38 @@ function readAll(fileRoute: string): string[] {
   return data;
 }
 
-// Failed aproach
 function testInput(
   input: string[],
   ruleNum: string,
-  ruleGraph: Map<string, Rule>,
-  chache: Map<string, boolean>
-): boolean {
+  ruleGraph: Map<string, Rule>
+): string[] {
+  let currentInput = [...input];
   /* console.log(input, ruleNum); */
-  if (input.length === 0) return true;
-  /* const subMessage = input.slice(1).join(""); */
-  /* if (chache.has(subMessage)) return cache.get(subMessage)!; */
+  if (input.length === 0) return [];
   const rule: Rule = ruleGraph.get(ruleNum)!;
   /* console.log(rule); */
   if (rule.final) {
-    const character = input.shift()!;
-    const charactersEquals = character === rule.character;
+    const charactersEquals = currentInput[0] === rule.character;
     /* console.log(charactersEquals); */
-    if (!charactersEquals) input.unshift(character);
-    return charactersEquals;
+    if (charactersEquals) currentInput.shift();
+    return currentInput;
   }
   const matchRule: boolean =
     rule.subRules?.some((subRules) => {
-      return subRules.every((ruleNum, index) =>
-        testInput(input, ruleNum, ruleGraph, cache)
-      );
+      const isValidRule = subRules.every((ruleNum) => {
+        const newInput = testInput(currentInput, ruleNum, ruleGraph);
+        const isSmaller = currentInput.length > newInput.length;
+        /* console.log(`Inner every ${currentInput}, ${newInput}, ${isSmaller}`); */
+        if (isSmaller) currentInput = newInput;
+        return isSmaller;
+      });
+      /* console.log(`Outer some ${currentInput}, ${isValidRule}`); */
+      if (!isValidRule) currentInput = [...input];
+      /* console.log(currentInput, isValidRule); */
+      return isValidRule;
     }) || false;
-  /* cache.set(subMessage, matchRule); */
   /* console.log(matchRule); */
-  return matchRule;
+  return currentInput;
 }
 
 interface Rule {
@@ -78,8 +80,9 @@ console.log(
   messages.filter((message) => {
     const messageSplitted = message.split("");
     return (
-      testInput(messageSplitted, "0", ruleGraph, cache) &&
-      messageSplitted.length === 0
+      testInput(messageSplitted, "0", ruleGraph).length ===
+      0 /*&&
+      messageSplitted.length === 0*/
     );
     /* console.log(message); */
     /* return test; */
