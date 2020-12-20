@@ -12,9 +12,7 @@ function readAll(fileRoute: string): string[] {
 }
 
 function generateRegex(ruleNum: string, ruleGraph: Map<string, Rule>): string {
-  /* console.log(input, ruleNum); */
   const rule: Rule = ruleGraph.get(ruleNum)!;
-  /* console.log(rule); */
   if (rule.final) return rule.character!;
   const subRulesConcat: string[] =
     rule.subRules?.map((subRules) => {
@@ -22,8 +20,6 @@ function generateRegex(ruleNum: string, ruleGraph: Map<string, Rule>): string {
         .map((ruleNum) => generateRegex(ruleNum, ruleGraph))
         .join("");
     }) || [];
-  /* cache.set(subMessage, matchRule); */
-  /* console.log(matchRule); */
   return rule.subRules?.length == 1
     ? subRulesConcat.join("")
     : `(?:${subRulesConcat.join("|")})`;
@@ -57,9 +53,16 @@ const ruleGraph = input.slice(undefined, sepIndex).reduce((acc, line) => {
   }
   return acc;
 }, new Map<string, Rule>());
-const cache: Map<string, boolean> = new Map();
-/* console.log(messages); */
-/* console.log(ruleGraph); */
-console.log(generateRegex("0", ruleGraph));
-const regex = new RegExp("^" + generateRegex("0", ruleGraph) + "$");
-console.log(messages.filter((message) => regex.test(message)).length);
+const regex = `${generateRegex("42", ruleGraph)}+?${generateRegex('42', ruleGraph)}{x}${generateRegex('31',ruleGraph)}{x}`;
+const toReturn = [];
+messages.forEach(message=>{
+  for (let i = 1; i < message.length; i++){
+    const test =regex.replace(/x/g, `${i}`);
+    const currentRegex = new RegExp(`^${test}$`);
+    if(currentRegex.test(message)){
+      toReturn.push(message);
+      break;
+    }
+  }
+});
+console.log(toReturn.length);
